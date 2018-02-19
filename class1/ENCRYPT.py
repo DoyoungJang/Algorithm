@@ -27,6 +27,9 @@ if number > 0:
             print(stringResult[iterate])
 
 
+test1 = []
 
+test1.append(1)
+test1.append("2")
 
-
+print(test1)

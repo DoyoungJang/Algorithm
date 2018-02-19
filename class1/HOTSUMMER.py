@@ -1,5 +1,3 @@
-
-
 count = int(input(""))
 stringResult = []
 
@@ -11,8 +9,6 @@ for mainIterate in range(count):
     if number >= 0:
         if number <= 1000:
 
-            stringEven = ""
-            stringOdd = ""
             arrayNumber = []
             arrayStringEven = []
             array = number2.split()
@@ -29,3 +25,4 @@ for mainIterate in range(count):
 
 for iterate in range(len(stringResult)):
     print(stringResult[iterate])
+
