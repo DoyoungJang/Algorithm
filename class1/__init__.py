@@ -1,10 +1,7 @@
-
-test1 = []
-
-test1.append(1)
-test1.append("2")
-
-print(test1)
+result = [[2,2,2],
+          [3,3,3],
+          [4,4,4]]
 
 
-print(type(test1[1]))
+print(result)
+print(result)
