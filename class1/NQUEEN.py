@@ -1,113 +1,74 @@
-count = int(input(""))
+global number
+routineCounter = int(input(""))
+K = 0
 stringResult = []
 
-
-for mainIterate in range(count):
-
-    number = int(input(""))
-    zeroMatrix = [[0 for col in range(number)] for row in range(number)]
-    countQueen = 0
-    rowCountQueen = 0
-    colCountQueen = 0
-
-    tempRowCountQueen = rowCountQueen
-    for rowIterate in range(number):
-
-        tempColCountQueen = colCountQueen
-        for colIterate in range(number):
-
-            if zeroMatrix[[rowIterate], [colIterate]] == 0:
-                zeroMatrix[[rowIterate], [colIterate]] = 2
-
-                createColOneMatrix(zeroMatrix, rowIterate, colIterate)
-                createDiaOneMatrix(zeroMatrix, rowIterate, colIterate)
-                colCountQueen += 1
-
-                colIterate=range(number)
+def printSolution(board):
+    global K
+    K = K+1
 
 
-        if colIterate == range(number):
-            if tempColCountQueen == colCountQueen:
-                rowIterate = range(number)
-            else : countQueen += colCountQueen
+def isSafe(board, row, col):
 
+    # check left side of row
+    for i in range(col):
+        if board[row][i] == 1:
+            return False
 
+    #  check upper side of col
+    for i in range(col):
+        if board[i][col] == 1:
+            return False
 
+    # check diagonal of left upper side
+    for i,j in zip(range(row,-1,-1), range(col,-1,-1)):
+        if board[i][j] == 1:
+            return False
 
+    # check diagonal of left lower side
+    for i,j in zip(range(row,number,1), range(col,-1,-1)):   #row에서 N까지 1씩, col에서 -1까지 -1씩.
+        if board[i][j] == 1:
+            return False
 
+    return True
 
-
-def findZeroCell(matrix, row, col):
-
-
-
-
-def createRowOneMatrix(matrix, row, col):
-    for iterate in range(matrix[:1]):
-        if row-iterate>=0: matrix[[row-iterate],[col]] = 1
-        if row+iterate<=range(matrix[:1]): matrix[[row+iterate],[col]] = 1
-
-    if row == range(matrix[:0]):
-        return matrix
-    else :
-        for subIterate in range(row, range(matrix[:0])):
-
-
-def createColOneMatrix(matrix, row, col):
-    for iterate in range(matrix[1:]):
-        if col+iterate<=range(matrix[:1]): matrix[[row],[col+iterate]] = 1
-
-    return matrix
-
-
-def createDiaOneMatrix(matrix, row, col):
-    for iterate in range(matrix[1:]):
-        if row+iterate<-range(matrix[:1]) || col+iterate<=range(matrix[1:]): matrix[[row+iterate],[col+iterate]] = 1
-        if row+iterate<=range(matrix[:1]) || col-iterate>=0: matrix[[row+iterate],[col-iterate]] = 1
-
-    return matrix
-
-
-def ifPlaceQueen(matrix, row, col):
-    if matrix[[row],[col]] == 0:
+def solveNQUtil(board, col):
+    if col >= number:
+        printSolution(board);
         return True
-    else :
+
+    for i in range(number): #모든 행을 하나하나 순회.
+        if isSafe(board, i, col):
+            board[i][col] = 1
+
+            solveNQUtil(board, col+1)
+
+            board[i][col] = 0
+
+    return False
+
+def solveNQ():
+    board = [[0 for col in range(number)] for row in range(number)]
+    Counter = 0
+
+
+    if solveNQUtil(board, 0) == False:
         return False
-
-
-def recursiveQueen(matrix, n) :
-    if n == 0:
-        return matrix
-
-
-    for col in range(number):
-        matrix[[row], [col]] == 1 #퀸 두기
-
-        if ifPlaceQueen(matrix, row, col) == False:
-            row += 1
-            rowFlag = True
-
-        if rowFlag == True:
-            col += 1
-        else:
-            col -= 1
-
-    if row == number:
-        return 1:
     else :
-
-        recursiveQueen()
-        return :
+        Counter += 1
 
 
+    printSolution(board)
 
+    return True
 
-
-
-
-
-
+if routineCounter > 0:
+    if routineCounter <= 12:
+        for i in range(routineCounter):
+            number = int(input(""))
+            K = 0
+            solveNQ()
+            stringResult.append(K)
 
 for iterate in range(len(stringResult)):
     print(stringResult[iterate])
-
