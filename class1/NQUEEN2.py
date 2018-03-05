@@ -2,7 +2,7 @@
 # Problem using backtracking
 
 global N
-N = 5
+N = 4
 
 def printSolution(board):
     for i in range(N):
@@ -24,13 +24,28 @@ def isSafe(board, row, col):
         if board[row][i] == 1:
             return False
 
+    # Check this col on upper side
+    for i in range(col):
+        if board[i][col] == 1:
+            return False
+
     # Check upper diagonal on left side
     for i,j in zip(range(row,-1,-1), range(col,-1,-1)):
         if board[i][j] == 1:
             return False
 
     # Check lower diagonal on left side
-    for i,j in zip(range(row,N,1), range(col,-1,-1)):
+    for i,j in zip(range(row,N,1), range(col,-1,-1)):   #row에서 N까지 1씩, col에서 -1까지 -1씩.
+        if board[i][j] == 1:
+            return False
+
+    # Check upper diagonal on right side
+    for i,j in zip(range(row,-1,-1), range(col,N,1)):  #row에서 -1까지 1씩, col에서 N까지 1씩.
+        if board[i][j] == 1:
+            return False
+
+    # Check lower diagonal on right side
+    for i,j in zip(range(row,N,1), range(col,N,1)):   #row에서 N까지 1씩, col에서 N까지 1씩.
         if board[i][j] == 1:
             return False
 
